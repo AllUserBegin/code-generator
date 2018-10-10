@@ -22,4 +22,9 @@ spring:
 # Mybatis配置
 mybatis:
     mapperLocations: classpath:mapper/**/*.xml
-
+devtools:
+  livereload:
+    enabled: true #是否支持livereload
+    port: 35729
+  restart:
+    enabled: true #是否支持热部署
