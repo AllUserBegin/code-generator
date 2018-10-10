@@ -1,0 +1,22 @@
+package ${package}.${moduleName}.dto.repose;
+
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+@Data
+@Table(name = "${className}")
+public class ${className}Rep extends  BaseRep {
+
+    #foreach ($column in $columns)
+        @ApiModelProperty(value = "$column.comments")
+        public $column.attrType $column.attrname;
+    #end
+}
