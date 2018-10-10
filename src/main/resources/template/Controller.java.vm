@@ -87,7 +87,7 @@ public class ${className}Controller {
                     @ApiImplicitParam(paramType ="query", name = "size", value = "每页显示条数", dataType = "String")
             })
     @ResponseBody()
-    public ApiResult<List<${className}Rep>> GetUserList(
+    public ApiResult<List<${className}Rep>> Get${className}List(
             @RequestParam(required = false,defaultValue = "1") Integer page,
             @RequestParam(required = false,defaultValue = "15") Integer size) {
 
