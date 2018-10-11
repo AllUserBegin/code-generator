@@ -1,4 +1,4 @@
-package ${package}.${moduleName}.controller;
+package ${package}.modules..${moduleName};
 
 import ${package}.${moduleName}.common.utils.ApiResult;
 import ${package}.${moduleName}.common.utils.DateUtils;

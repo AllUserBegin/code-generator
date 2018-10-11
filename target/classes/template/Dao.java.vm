@@ -1,4 +1,4 @@
-package ${package}.${moduleName}.${className}MapperSource;
+package ${package}.${moduleName}.${sourceName}MapperSource;
 
 import com.erp.common.MyMapper;
 import com.erp.entity.${className}Bean;

@@ -171,31 +171,35 @@ public class GenUtils {
     public static String getFileName(String template, String className, String packageName, String moduleName,String sourceName) {
         String packagePath = "main" + File.separator + "java" + File.separator;
         if (StringUtils.isNotBlank(packageName)) {
-            packagePath += packageName.replace(".", File.separator) + File.separator + moduleName + File.separator;
+            packagePath += packageName.replace(".", File.separator);
         }
 
         if (template.contains("Controller.java.vm" )) {
-            return packagePath + "controller" + File.separator + className + "Controller.java";
+            return packagePath +File.separator+"modules" +File.separator+ moduleName + File.separator+ className + "Controller.java";
+        }
+
+        if (StringUtils.isNotBlank(packageName)) {
+            packagePath +=  File.separator;
         }
 
         if (template.contains("Entity.java.vm" )) {
-            return packagePath + "entity" + File.separator + className + "Bean.java";
+            return packagePath + "entity" + File.separator+ moduleName + File.separator + className + "Bean.java";
         }
 
         if (template.contains("Dao.java.vm" )) {
-            return packagePath+"Mapper"+ File.separator  + sourceName+"Source" + File.separator + className + "Mapper.java";
+            return packagePath+"Mapper"+ File.separator  + sourceName+"Source" + File.separator+ moduleName + File.separator + className + "Mapper.java";
         }
 
         if (template.contains("Service.java.vm" )) {
-            return packagePath + "service" + File.separator + className + "Service.java";
+            return packagePath + "service" + File.separator+ moduleName + File.separator + className + "Service.java";
         }
 
         if (template.contains("Rep.java.vm" )) {
-            return packagePath + "dto"+ File.separator +"reponse" + File.separator + className + "Rep.java";
+            return packagePath + "dto"+ File.separator +"reponse" + File.separator+ moduleName + File.separator + className + "Rep.java";
         }
 
         if (template.contains("Req.java.vm" )) {
-            return packagePath + "dto"+ File.separator  +"request"+ File.separator + className + "Req.java";
+            return packagePath + "dto"+ File.separator  +"request"+ File.separator+ moduleName + File.separator + className + "Req.java";
         }
 
         return null;
