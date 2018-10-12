@@ -1,8 +1,9 @@
-package ${package}.${moduleName}.dto.repose;
+package ${package}.dto.reponse.${moduleName};
 
+import com.erp.dto.reponse.BaseRep;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-
+import java.util.Date;
 
 /**
  * ${comments}
@@ -12,7 +13,6 @@ import lombok.Data;
  * @date ${datetime}
  */
 @Data
-@Table(name = "${className}")
 public class ${className}Rep extends  BaseRep {
 
     #foreach ($column in $columns)

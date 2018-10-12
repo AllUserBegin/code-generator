@@ -1,7 +1,7 @@
-package ${package}.${moduleName}.${sourceName}MapperSource;
+package ${package}.Mapper.${sourceName}Source.${moduleName};
 
 import com.erp.common.MyMapper;
-import com.erp.entity.${className}Bean;
+import com.erp.entity.${moduleName}.${className}Bean;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
 /**

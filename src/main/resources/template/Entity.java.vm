@@ -1,13 +1,12 @@
-package ${package}.${moduleName}.entity;
+package ${package}.entity.${moduleName};
 
+import java.util.Date;
 import lombok.Data;
 import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Date;
 #if(${hasBigDecimal})
 import java.math.BigDecimal;
 #end
-
 
 /**
  * ${comments}

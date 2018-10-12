@@ -1,13 +1,13 @@
-package ${package}.modules..${moduleName};
+package ${package}.modules.${moduleName};
 
-import ${package}.${moduleName}.common.utils.ApiResult;
-import ${package}.${moduleName}.common.utils.DateUtils;
-import ${package}.${moduleName}.common.xss.SQLFilter;
-import ${package}.${moduleName}.dto.repose.${className}Rep;
-import ${package}.${moduleName}.dto.request.${className}AddReq;
-import ${package}.${moduleName}.dto.request.${className}ModifyReq;
-import ${package}.${moduleName}.entity.${className}Bean;
-import ${package}.${moduleName}.service.${className}Service;
+import ${package}.common.utils.ApiResult;
+import ${package}.common.utils.DateUtils;
+import ${package}.common.xss.SQLFilter;
+import ${package}.dto.reponse.${moduleName}.${className}Rep;
+import ${package}.dto.request.${moduleName}.${className}CreateReq;
+import ${package}.dto.request.${moduleName}.${className}ModifyReq;
+import ${package}.entity.${moduleName}.${className}Bean;
+import ${package}.service.${moduleName}.${className}Service;
 
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
@@ -30,7 +30,8 @@ import java.util.List;
  * @date ${datetime}
  */
 @RestController
-@RequestMapping("/${pathName}")
+@RequestMapping(value = "/${moduleName}/${pathName}", produces = MediaType.APPLICATION_JSON_VALUE) //配置返回值 application/json
+@Api(description = "${comments}")
 public class ${className}Controller {
 	@Autowired
 	private ${className}Service ${classname}Service;
@@ -38,7 +39,7 @@ public class ${className}Controller {
 
     @ApiOperation(value = "新增")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ApiResult create(${className}AddReq data)
+    public ApiResult create(${className}CreateReq data)
     {
 			${className}Bean entity=new ${className}Bean();
 
@@ -51,8 +52,9 @@ public class ${className}Controller {
     public  ApiResult modify(${className}ModifyReq data)
     {
         Example example = new Example(${className}Bean.class);
-        example.createCriteria().andEqualTo("${pk.attrname}",data.Id);
-        UsersBean entity=userService.queryOneByExample(example);
+        example.createCriteria().andEqualTo("${pk.attrname}",data.${pk.attrname});
+
+            ${className}Bean entity=${classname}Service.queryOneByExample(example);
 
 
 
@@ -63,19 +65,19 @@ public class ${className}Controller {
 
     @ApiOperation(value = "删除")
     @RequestMapping(value = "/del", method = RequestMethod.GET)
-    public ApiResult del(${pk.attrType} id)
+    public ApiResult del(${pk.attrType} ${pk.attrname})
     {
-			${classname}Service.deleteByPrimaryKey(id);
+			${classname}Service.deleteByPrimaryKey(${pk.attrname});
         return ApiResult.Success("删除成功!");
     }
 
     @ApiOperation(value = "获取单条")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
-    public  ApiResult info(${pk.attrType} id)
+    public  ApiResult info(${pk.attrType} ${pk.attrname})
     {
         Example example = new Example(${className}Bean.class);
-        example.createCriteria().andEqualTo("${pk.attrname}",data.Id);
-        UsersBean entity= ${classname}Service.queryOneByExample(example);
+        example.createCriteria().andEqualTo("${pk.attrname}",${pk.attrname});
+            ${className}Bean entity= ${classname}Service.queryOneByExample(example);
         return ApiResult.Success(entity);
     }
 
@@ -94,10 +96,10 @@ public class ${className}Controller {
         Example example = new Example(${className}Bean.class);
         Example.Criteria criteria = example.createCriteria();
 
-        PageInfo<UsersBean> pageInfo = userService.queryPageListByExample(example,page,size);
+        PageInfo<${className}Bean> pageInfo = ${classname}Service.queryPageListByExample(example,page,size);
 
-        List<UserRep> list = new ArrayList<>();
-        for(UsersBean bean:pageInfo.getList())
+        List<${className}Rep> list = new ArrayList<>();
+        for(${className}Bean bean:pageInfo.getList())
         {
 				${className}Rep item = new ${className}Rep();
             BeanUtils.copyProperties(bean,item);

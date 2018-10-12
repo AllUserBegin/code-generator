@@ -35,7 +35,8 @@ public class GenUtils {
         templates.add("template/Entity.java.vm");
         templates.add("template/Service.java.vm");
         templates.add("template/Rep.java.vm");
-        templates.add("template/Req.java.vm");
+        templates.add("template/CreateReq.java.vm");
+        templates.add("template/ModifyReq.java.vm");
         return templates;
     }
 
@@ -110,6 +111,7 @@ public class GenUtils {
         map.put("hasBigDecimal", hasBigDecimal);
         map.put("mainPath", mainPath);
         map.put("package", config.getString("package" ));
+        map.put("sourceName", sourceName);
         map.put("moduleName", config.getString("moduleName" ));
         map.put("author", config.getString("author" ));
         map.put("email", config.getString("email" ));
@@ -198,9 +200,13 @@ public class GenUtils {
             return packagePath + "dto"+ File.separator +"reponse" + File.separator+ moduleName + File.separator + className + "Rep.java";
         }
 
-        if (template.contains("Req.java.vm" )) {
-            return packagePath + "dto"+ File.separator  +"request"+ File.separator+ moduleName + File.separator + className + "Req.java";
+        if (template.contains("CreateReq.java.vm" )) {
+            return packagePath + "dto"+ File.separator  +"request"+ File.separator+ moduleName + File.separator + className + "CreateReq.java";
         }
+        if (template.contains("ModifyReq.java.vm" )) {
+            return packagePath + "dto"+ File.separator  +"request"+ File.separator+ moduleName + File.separator + className + "ModifyReq.java";
+        }
+
 
         return null;
     }
