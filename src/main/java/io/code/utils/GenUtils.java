@@ -48,6 +48,7 @@ public class GenUtils {
         //配置信息
         Configuration config = getConfig();
         boolean hasBigDecimal = false;
+        boolean hasDate = false;
         //表信息
         TableEntity tableEntity = new TableEntity();
         tableEntity.setTableName(table.get("tableName" ));
@@ -79,6 +80,11 @@ public class GenUtils {
             if (!hasBigDecimal && attrType.equals("BigDecimal" )) {
                 hasBigDecimal = true;
             }
+
+            if (!hasDate && (attrType.equals("date" )||attrType.equals("datetime" )||attrType.equals("timestamp" ))) {
+                hasDate = true;
+            }
+
             //是否主键
             if ("PRI".equalsIgnoreCase(column.get("columnKey" )) && tableEntity.getPk() == null) {
                 tableEntity.setPk(columnEntity);

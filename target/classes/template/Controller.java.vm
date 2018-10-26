@@ -39,6 +39,7 @@ public class ${className}Controller {
 
     @ApiOperation(value = "新增")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @RequiresPermissions("${moduleName}:${pathName}:create")
     public ApiResult create(${className}CreateReq data)
     {
 			${className}Bean entity=new ${className}Bean();
@@ -49,6 +50,7 @@ public class ${className}Controller {
 
     @ApiOperation(value = "修改")
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
+    @RequiresPermissions("${moduleName}:${pathName}:modify")
     public  ApiResult modify(${className}ModifyReq data)
     {
         Example example = new Example(${className}Bean.class);
@@ -65,6 +67,7 @@ public class ${className}Controller {
 
     @ApiOperation(value = "删除")
     @RequestMapping(value = "/del", method = RequestMethod.GET)
+    @RequiresPermissions("${moduleName}:${pathName}:del")
     public ApiResult del(${pk.attrType} ${pk.attrname})
     {
 			${classname}Service.deleteByPrimaryKey(${pk.attrname});
@@ -73,6 +76,7 @@ public class ${className}Controller {
 
     @ApiOperation(value = "获取单条")
     @RequestMapping(value = "/info", method = RequestMethod.GET)
+    @RequiresPermissions("${moduleName}:${pathName}:info")
     public  ApiResult info(${pk.attrType} ${pk.attrname})
     {
         Example example = new Example(${className}Bean.class);
@@ -89,6 +93,7 @@ public class ${className}Controller {
                     @ApiImplicitParam(paramType ="query", name = "size", value = "每页显示条数", dataType = "String")
             })
     @ResponseBody()
+    @RequiresPermissions("${moduleName}:${pathName}:list")
     public ApiResult<List<${className}Rep>> Get${className}List(
             @RequestParam(required = false,defaultValue = "1") Integer page,
             @RequestParam(required = false,defaultValue = "15") Integer size) {
