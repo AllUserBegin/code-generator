@@ -1,9 +1,7 @@
 package ${package}.service.${moduleName};
 import ${package}.entity.${moduleName}.${className}Bean;
-import com.erp.service.BaseService;
-import org.springframework.stereotype.Service;
+import ${package}.service.IService;
 
-@Service
-public class ${className}Service extends BaseService<${className}Bean,${pk.attrType}> {
+public interface ${className}Service extends IService<${className}Bean,${pk.attrType}> {
 
 }

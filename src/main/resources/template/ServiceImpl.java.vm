@@ -4,6 +4,6 @@ import com.erp.service.BaseService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ${className}Service extends BaseService<${className}Bean,${pk.attrType}> {
+public class ${className}ServiceImpl extends BaseService<${className}Bean,${pk.attrType}> implements ${className}Service {
 
 }

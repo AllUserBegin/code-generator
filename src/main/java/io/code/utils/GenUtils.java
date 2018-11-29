@@ -33,6 +33,7 @@ public class GenUtils {
         templates.add("template/Controller.java.vm");
         templates.add("template/Dao.java.vm");
         templates.add("template/Entity.java.vm");
+        templates.add("template/ServiceImpl.java.vm");
         templates.add("template/Service.java.vm");
         templates.add("template/Rep.java.vm");
         templates.add("template/CreateReq.java.vm");
@@ -66,7 +67,7 @@ public class GenUtils {
             columnEntity.setColumnName(column.get("columnName" ));
             columnEntity.setDataType(column.get("dataType" ));
             columnEntity.setComments(column.get("columnComment" ));
-            columnEntity.setExtra(column.get("extra" ));
+            columnEntity.setExtra(column.get("extra".toUpperCase() ));
             columnEntity.setIsNullAble(column.get("isNullAble" ));
 
             //列名转换成Java属性名
@@ -200,6 +201,10 @@ public class GenUtils {
 
         if (template.contains("Service.java.vm" )) {
             return packagePath + "service" + File.separator+ moduleName + File.separator + className + "Service.java";
+        }
+
+        if (template.contains("ServiceImpl.java.vm" )) {
+            return packagePath + "service" + File.separator+ moduleName + File.separator +"impl"+ File.separator + className + "ServiceImpl.java";
         }
 
         if (template.contains("Rep.java.vm" )) {

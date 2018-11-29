@@ -25,6 +25,8 @@ public class ColumnEntity {
     private String attrType;
     //auto_increment
     private String extra;
+    //是否自增
+    private  boolean isIdentity;
 
 	private boolean isNullAble;
     
@@ -68,7 +70,14 @@ public class ColumnEntity {
 		return extra;
 	}
 	public void setExtra(String extra) {
+		if(null!=extra)
+			this.isIdentity=extra.equalsIgnoreCase("auto_increment");
 		this.extra = extra;
+	}
+
+	public boolean getIsIdentity()
+	{
+		return  isIdentity;
 	}
 	public void setIsNullAble(String _isNullAble) {
 		this.isNullAble = _isNullAble=="YES";
