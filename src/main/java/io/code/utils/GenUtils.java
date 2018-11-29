@@ -69,6 +69,7 @@ public class GenUtils {
             columnEntity.setComments(column.get("columnComment" ));
             columnEntity.setExtra(column.get("extra".toUpperCase() ));
             columnEntity.setIsNullAble(column.get("isNullAble" ));
+            columnEntity.setIsPrimarykey(column.get("columnKey"));
 
             //列名转换成Java属性名
             String attrName = columnToJava(columnEntity.getColumnName());

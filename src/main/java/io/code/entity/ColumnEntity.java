@@ -29,6 +29,8 @@ public class ColumnEntity {
     private  boolean isIdentity;
 
 	private boolean isNullAble;
+
+	private  boolean isPrimarykey;
     
 	public String getColumnName() {
 		return columnName;
@@ -73,6 +75,13 @@ public class ColumnEntity {
 		if(null!=extra)
 			this.isIdentity=extra.equalsIgnoreCase("auto_increment");
 		this.extra = extra;
+	}
+
+	public boolean getIsPrimarykey() {
+		return isPrimarykey;
+	}
+	public void setIsPrimarykey(String column_key) {
+		this.isPrimarykey = column_key.equalsIgnoreCase("pri");
 	}
 
 	public boolean getIsIdentity()
