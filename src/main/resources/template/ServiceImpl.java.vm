@@ -1,9 +1,107 @@
-package ${package}.service.${moduleName};
-import ${package}.entity.${moduleName}.${className}Bean;
-import com.erp.service.BaseService;
+package ${package}.${moduleName}.service.Impl;
+import com.github.pagehelper.PageHelper;
+import ${package}.base.BasePageList;
+import ${package}.base.ApiResultEntity;
+import ${package}.commons.CommonConstants;
+import ${package}.commons.StateCode;
+import ${package}.${moduleName}.beans.${className};
+import ${package}.${moduleName}.beans.${className}Example;
+import ${package}.${moduleName}.common.util.PageUtil;
+import ${package}.${moduleName}.mapper.${className}ExMapper;
+import ${package}.${moduleName}.service.${className}Service;
+import ${package}.utils.ValidateUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
+/**
+ *
+ * @ProjectName: ${moduleName}
+ * @Package: ${package}.${moduleName}.${className}.service.Impl
+ * @ClassName: ${className}ServiceImpl
+ * @Description:
+ * @Author: ${author}
+ * @CreateDate: ${datetime}
+ * @UpdateUser: 更新者
+ * @UpdateDate: ${datetime}
+ * @UpdateRemark: 更新说明
+ * @Version: 1.0
+ */
 @Service
-public class ${className}ServiceImpl extends BaseService<${className}Bean,${pk.attrType}> implements ${className}Service {
+public class ${className}ServiceImpl  implements ${className}Service {
 
+    @Autowired
+    private ${className}ExMapper ${classname}ExMapper;
+
+    @Override
+    public  ApiResultEntity add(${className} entity) {
+        if (null == entity)
+        {
+            return ApiResultEntity.returnResult(StateCode.DATAERROR.get());
+        }
+
+        int result = ${classname}ExMapper.insert(entity);
+        if (1 == result)
+        {
+            return ApiResultEntity.returnResult(StateCode.success.get());
+        }
+        return ApiResultEntity.returnResult(StateCode.DATAERROR.get());
+    }
+
+    @Override
+    public ApiResultEntity modify(${className} entity) {
+        if (null == entity)
+        {
+            return ApiResultEntity.returnResult(StateCode.DATAERROR.get());
+        }
+        if (null == entity.getId())
+        {
+            return ApiResultEntity.returnResult(StateCode.DATAERROR.get());
+        }
+        int result = ${classname}ExMapper.updateByPrimaryKey(entity);
+        if (1 == result)
+        {
+            return ApiResultEntity.returnResult(StateCode.success.get());
+        }
+        return ApiResultEntity.returnResult(StateCode.DATAERROR.get());
+    }
+
+    @Override
+    public ApiResultEntity del(${pk.attrType} ${pk.attrname}) {
+        /* if (!ValidateUtils.isValidNumber(false,id))
+        {
+            return ApiResultEntity.returnResult(StateCode.DATAERROR.get());
+        }*/
+        int result = ${classname}ExMapper.deleteByPrimaryKey(${pk.attrname});
+        if (1 == result)
+        {
+            return ApiResultEntity.returnResult(StateCode.success.get());
+        }
+        return ApiResultEntity.returnResult(StateCode.DATAERROR.get());
+    }
+
+    @Override
+    public ${className} getById(${pk.attrType} ${pk.attrname}) {
+         /* if (!ValidateUtils.isValidNumber(false,id))
+        {
+            return ApiResultEntity.returnResult(StateCode.DATAERROR.get());
+        }*/
+        ${className} result = ${classname}ExMapper.selectByPrimaryKey(${pk.attrname});
+        return result;
+
+    }
+
+    @Override
+    public ApiResultEntity<BasePageList<${className}>> queryPageListByExample(${className}Example example, int page,int size) {
+        if (!ValidateUtils.isValidNumber(false,page))
+        {
+            return ApiResultEntity.returnResult(StateCode.DATAERROR.get());
+        }
+        //int size = CommonConstants.ITEMSINEACHPAGE;
+
+        PageHelper.startPage(page, size, true);// 设置分页参数
+        // 查询数据
+        List<${className}> lists = ${classname}ExMapper.selectByExample(example);
+        return ApiResultEntity.PageResult(StateCode.success.get(),lists);
+    }
 }

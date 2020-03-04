@@ -1,0 +1,32 @@
+package ${package}.${moduleName}.mapper.base;
+
+import ${package}.${moduleName}.beans.${className};
+import ${package}.${moduleName}.beans.${className}Example;
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
+
+
+public interface ${className}Mapper {
+
+    int countByExample(${className}Example example);
+
+    int deleteByExample(${className}Example example);
+
+    int deleteByPrimaryKey(${pk.attrType} id);
+
+    int insert(${className} record);
+
+    int insertSelective(${className} record);
+
+    List<${className}> selectByExample(${className}Example example);
+
+    ${className} selectByPrimaryKey(${pk.attrType} id);
+
+    int updateByExampleSelective(@Param("record") ${className} record, @Param("example") ${className}Example example);
+
+    int updateByExample(@Param("record") ${className} record, @Param("example") ${className}Example example);
+
+    int updateByPrimaryKeySelective(${className} record);
+
+    int updateByPrimaryKey(${className} record);
+}

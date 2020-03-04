@@ -1,0 +1,9 @@
+package ${package}.${moduleName}.mapper;
+
+import ${package}.${moduleName}.beans.${className};
+import ${package}.${moduleName}.mapper.base.${className}Mapper;
+import ${package}.${moduleName}.common.BaseMapper;
+
+public interface ${className}ExMapper extends ${className}Mapper, BaseMapper<${className}> {
+
+}

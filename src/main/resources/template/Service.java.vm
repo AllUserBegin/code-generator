@@ -1,7 +1,19 @@
-package ${package}.service.${moduleName};
-import ${package}.entity.${moduleName}.${className}Bean;
-import ${package}.service.IService;
+package ${package}.${moduleName}.service;
 
-public interface ${className}Service extends IService<${className}Bean,${pk.attrType}> {
 
+import ${package}.base.BasePageList;
+import ${package}.base.ApiResultEntity;
+import ${package}.${moduleName}.beans.${className};
+import ${package}.${moduleName}.beans.${className}Example;
+
+public interface ${className}Service {
+    public ApiResultEntity add(${className} entity);
+
+    public  ApiResultEntity modify(${className} entity);
+
+    public  ApiResultEntity del(${pk.attrType} ${pk.attrname});
+
+    public  ${className} getById(${pk.attrType} ${pk.attrname});
+
+    public  ApiResultEntity<BasePageList<${className}>> queryPageListByExample(${className}Example example, int page,int size);
 }

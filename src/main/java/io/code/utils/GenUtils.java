@@ -11,6 +11,7 @@ import org.apache.commons.lang.WordUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
+import org.springframework.context.annotation.Bean;
 
 import java.io.File;
 import java.io.IOException;
@@ -31,13 +32,16 @@ public class GenUtils {
     public static List<String> getTemplates(){
         List<String> templates = new ArrayList<String>();
         templates.add("template/Controller.java.vm");
-        templates.add("template/Dao.java.vm");
-        templates.add("template/Entity.java.vm");
-        templates.add("template/ServiceImpl.java.vm");
+        /*templates.add("template/Entity.java.vm");*/
+
+        /*templates.add("template/Mapper.java.vm");*/
+        templates.add("template/MapperEx.java.vm");
         templates.add("template/Service.java.vm");
-        templates.add("template/Rep.java.vm");
+        templates.add("template/ServiceImpl.java.vm");
+        templates.add("template/MapperExXml.java.vm");
+/*        templates.add("template/Rep.java.vm");
         templates.add("template/CreateReq.java.vm");
-        templates.add("template/ModifyReq.java.vm");
+        templates.add("template/ModifyReq.java.vm");*/
         return templates;
     }
 
@@ -185,38 +189,30 @@ public class GenUtils {
         }
 
         if (template.contains("Controller.java.vm" )) {
-            return packagePath +File.separator+"modules" +File.separator+ moduleName + File.separator+ className + "Controller.java";
-        }
-
-        if (StringUtils.isNotBlank(packageName)) {
-            packagePath +=  File.separator;
+            return packagePath+File.separator+ moduleName +File.separator+ "controller" +File.separator+  className + "Controller.java";
         }
 
         if (template.contains("Entity.java.vm" )) {
-            return packagePath + "entity" + File.separator+ moduleName + File.separator + className + "Bean.java";
+            return packagePath + File.separator+ moduleName + File.separator + "beans" +File.separator+ className + ".java";
         }
 
-        if (template.contains("Dao.java.vm" )) {
-            return packagePath+"Mapper"+ File.separator  + sourceName+"Source" + File.separator+ moduleName + File.separator + className + "Mapper.java";
+        if (template.contains("Mapper.java.vm" )) {
+            return packagePath + File.separator+ moduleName + File.separator + "mapper" +File.separator+ "base" +File.separator+ className + "Mapper.java";
+        }
+        if (template.contains("MapperEx.java.vm" )) {
+            return  packagePath + File.separator+ moduleName + File.separator + "mapper" +File.separator+ className + "ExMapper.java";
         }
 
         if (template.contains("Service.java.vm" )) {
-            return packagePath + "service" + File.separator+ moduleName + File.separator + className + "Service.java";
+            return packagePath + File.separator+ moduleName + File.separator + "service" +File.separator + className + "Service.java";
         }
 
         if (template.contains("ServiceImpl.java.vm" )) {
-            return packagePath + "service" + File.separator+ moduleName + File.separator +"impl"+ File.separator + className + "ServiceImpl.java";
+            return packagePath + File.separator+ moduleName + File.separator + "service" +File.separator+ "Impl" +File.separator+ className + "ServiceImpl.java";
         }
 
-        if (template.contains("Rep.java.vm" )) {
-            return packagePath + "dto"+ File.separator +"reponse" + File.separator+ moduleName + File.separator + className + "Rep.java";
-        }
-
-        if (template.contains("CreateReq.java.vm" )) {
-            return packagePath + "dto"+ File.separator  +"request"+ File.separator+ moduleName + File.separator + className + "CreateReq.java";
-        }
-        if (template.contains("ModifyReq.java.vm" )) {
-            return packagePath + "dto"+ File.separator  +"request"+ File.separator+ moduleName + File.separator + className + "ModifyReq.java";
+        if (template.contains("MapperExXml.java.vm" )) {
+            return  "main" + File.separator + "resources" + File.separator + "mapper"+File.separator+ className + "ExMapper.xml";
         }
 
 

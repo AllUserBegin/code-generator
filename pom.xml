@@ -86,12 +86,19 @@
 	</dependencies>
 
 	<build>
+		<finalName>tradesystem_generator</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering> <!--是否使用过滤器-->
+			</resource>
+		</resources>
 	</build>
 
 	<repositories>
